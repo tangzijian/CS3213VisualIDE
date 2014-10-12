@@ -1,6 +1,7 @@
 CS3213VisualIDE
 ===============
 
+Development environment setup:
 1. git
 2. Node.js v0.10.x+ (npm comes bundled with Node.js)
 3. Install Yeoman toolset:
