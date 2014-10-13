@@ -9,20 +9,19 @@ Playground.Views = Playground.Views || {};
 
         template: JST['app/scripts/templates/player.ejs'],
 
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
+        el: '#player',
 
         events: {},
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+            this.render();
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+            var w = this.$el.width();
+            var h = this.$el.height();
+            console.log('('+w+','+h+')');
+            this.$el.html(this.template({id:'player_canvas',width:w,height:h}));
         }
 
     });

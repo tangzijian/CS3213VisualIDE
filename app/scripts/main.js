@@ -1,18 +1,19 @@
 /*global Playground, $*/
 
 
-window.playground = {
+window.Playground = {
     Models: {},
     Collections: {},
     Views: {},
     Routers: {},
     init: function () {
         'use strict';
+        new this.Views.Player();
     }
 };
 
 $(document).ready(function () {
     'use strict';
-    playground.init();
+    Playground.init();
     Backbone.history.start();
 });
