@@ -56,7 +56,7 @@
                     <div id="editor_toolbar" class="editor-toolbar">
                         <!-- Backbone editor toolbar view -->
                     </div>
-                    <div id="editor_workspace" class="block editor-workspace" ondrop="dropIntoWorkspace(event)" ondragover="allowDrop(event)">
+                    <div id="editor_workspace" class="block editor-workspace">
                         <!-- Backbone editor workspace -->
                     </div>
                 </div>
@@ -66,6 +66,7 @@
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/jquery-ui/jquery-ui.js"></script>
         <script src="bower_components/lodash/dist/lodash.compat.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <!-- endbuild -->
@@ -87,7 +88,6 @@
 
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
-        <script src="scripts/dragDrop.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/views/editor.js"></script>
         <script src="scripts/views/player.js"></script>
