@@ -5,11 +5,11 @@ Playground.Views = Playground.Views || {};
 (function () {
     'use strict';
 
-    Playground.Views.Editor = Backbone.View.extend({
+    Playground.Views.Toolbar = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/editor.ejs'],
+        template: JST['app/scripts/templates/toolbar.ejs'],
 
-        el: '#editor_workspace',
+        el: '#editor_toolbar',
 
         events: {},
 

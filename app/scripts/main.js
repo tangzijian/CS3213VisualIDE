@@ -9,6 +9,8 @@ window.Playground = {
     init: function () {
         'use strict';
         new this.Views.Player();
+        new this.Views.Toolbar();
+        new this.Views.Editor();
     }
 };
 

@@ -2,6 +2,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap.scss';
 
+li {
+	color: #FFFFFF;		
+}
+
 .container-fluid {
 	padding-left: 4px;
 	padding_right: 4px;	
@@ -39,7 +43,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 	padding-right: 20px;
 }
 
-input[type="text"] {
+.filename-input {
 	padding: 2px 8px;
 	line-height: 12px;
 	width: 300px;
@@ -68,6 +72,46 @@ input[type="text"] {
 .editor-workspace {
 	height: 670px;
 	width: auto;
+	padding: 20px 20px;
 	overflow: hidden;
 	background-color: #E8E8E8;
+}
+
+.workspace-list {
+	list-style-type: none;
+}
+
+.toolbar {
+	padding-left: 20px;
+	list-style-type: none;
+}
+
+.toolbar-item {
+	margin-top: 20px;
+	padding-left: 8px;
+	width: 200px;
+}
+
+.toolbar-item-normal {
+	padding-top: 5px;
+	height: 42px;
+	background-image: url('../images/block_normal.png');
+	background-repeat: no-repeat;
+}
+
+.toolbar-item-control {
+	padding-top: 5px;
+	height: 102px;
+	background-image: url('../images/block_control.png');
+	background-repeat: no-repeat;
+}
+
+.number-input {
+	line-height: 12px;
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 30px;
+	font-size: 11px;
+	color: #000000;
+	border-radius: 8px;
 }

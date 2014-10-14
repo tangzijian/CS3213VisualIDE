@@ -40,7 +40,7 @@
         <div class="container-fluid">
             <div class="left-col">
                 <div class="player-header block ">
-                    <input type="text"  name="file_name" value="Untitled">
+                    <input type="text"  name="file_name" value="Untitled" class="filename-input">
                     <button type="button" style="float:right"><img src="images/play_button.png" width="22" height="22"></button>
                 </div>
                 <div id="player" class="block player">
@@ -56,7 +56,7 @@
                     <div id="editor_toolbar" class="editor-toolbar">
                         <!-- Backbone editor toolbar view -->
                     </div>
-                    <div id="editor_workspace" class="block editor-workspace">
+                    <div id="editor_workspace" class="block editor-workspace" ondrop="dropIntoWorkspace(event)" ondragover="allowDrop(event)">
                         <!-- Backbone editor workspace -->
                     </div>
                 </div>
@@ -87,6 +87,7 @@
 
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/dragDrop.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/views/editor.js"></script>
         <script src="scripts/views/player.js"></script>
@@ -95,6 +96,7 @@
         <script src="scripts/views/sprite.js"></script>
         <script src="scripts/views/background.js"></script>
         <script src="scripts/views/command.js"></script>
+        <script src="scripts/views/toolbar.js"></script>
         <!-- endbuild -->
 </body>
 </html>

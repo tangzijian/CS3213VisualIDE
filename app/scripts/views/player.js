@@ -20,7 +20,6 @@ Playground.Views = Playground.Views || {};
         render: function () {
             var w = this.$el.width();
             var h = this.$el.height();
-            console.log('('+w+','+h+')');
             this.$el.html(this.template({id:'player_canvas',width:w,height:h}));
         }
 
