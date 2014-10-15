@@ -15,9 +15,15 @@ window.Playground = {
         $(".draggable").draggable({
             helper: "clone",
             connectToSortable: "#workspace-sortable",
-            tolerance: "touch"
+            tolerance: "touch",
+            stop: function(event, ui) {
+                $("#editor_workspace li").removeClass("draggable ui-draggable ui-draggable-handle");
+                $("#editor_workspace ul").addClass("ui-sortable");
+                $("#editor_workspace ul").sortable({
+                     connectWith: "#editor_workspace ul"
+                });
+            }
         });
-        $("#workspace-sortable").sortable();
     }
 };
 
