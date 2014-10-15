@@ -15,10 +15,9 @@ window.Playground = {
         $(".draggable").draggable({
             helper: "clone",
             connectToSortable: "#workspace-sortable",
+            tolerance: "touch"
         });
-        $("#workspace-sortable").sortable({
-            connectWith: "ul"
-        });
+        $("#workspace-sortable").sortable();
     }
 };
 
