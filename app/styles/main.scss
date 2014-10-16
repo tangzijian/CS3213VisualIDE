@@ -2,10 +2,14 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap.scss';
 
-ul { min-height:20px; }
+ul { 
+	list-style-type: none;
+	min-height: 15px; 
+	padding: 0px;	
+}
 
 li {
-	color: #FFFFFF;		
+	color: #FFFFFF;	
 }
 
 .container-fluid {
@@ -80,7 +84,12 @@ li {
 }
 
 .editor-workspace li {
-	margin-top: -10px;
+	margin-top: -6px;
+}
+
+.workspace-list div {
+	padding-left: 8px;
+	padding-top: 5px;
 }
 
 .workspace-list {
@@ -92,6 +101,11 @@ li {
 	list-style-type: none;
 }
 
+.toolbar div {
+	padding-left: 8px;
+	padding-top: 5px;
+}
+
 .toolbar-item {
 	margin-top: 20px;
 	padding-left: 8px;
@@ -100,16 +114,30 @@ li {
 
 .toolbar-item-normal {
 	padding-top: 5px;
-	height: 42px;
+	height: 37px;
 	background-image: url('../images/block_normal.png');
 	background-repeat: no-repeat;
 }
 
-.toolbar-item-control {
+.toolbar-item-start {
 	padding-top: 5px;
-	height: 102px;
-	background-image: url('../images/block_control.png');
+	height: 37px;
+	background-image: url('../images/block_start.png');
 	background-repeat: no-repeat;
+}
+
+.toolbar-item-control {
+	min-height: 83px;
+}
+
+.toolbar-item-control ul {
+	background-image: url('../images/block_control_mid.png');
+	background-repeat: repeat-y;
+	margin-left: -8px;
+}
+
+.toolbar-item-control li {
+	margin-left: 25px;
 }
 
 .number-input {
@@ -120,4 +148,21 @@ li {
 	font-size: 11px;
 	color: #000000;
 	border-radius: 8px;
+}
+
+.block-control-top {
+	width: 200px;
+	height: 37px;
+	margin-left: -8px;
+	background-image: url('../images/block_control_top.png');
+	background-repeat: no-repeat;
+}
+
+.block-control-botm {
+	width: 200px;
+	height: 44px;
+	margin-left: -8px;
+	margin-top: -14px;
+	background-image: url('../images/block_control_botm.png');
+	background-repeat: no-repeat;
 }
