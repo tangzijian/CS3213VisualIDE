@@ -9,6 +9,8 @@ Playground.Models = Playground.Models || {};
 
         url: '',
 
+        commands: {},
+
         initialize: function() {
         },
 

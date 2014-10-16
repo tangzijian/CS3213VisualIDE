@@ -11,6 +11,7 @@ window.Playground = {
         new this.Views.Player();
         new this.Views.Toolbar();
         new this.Views.Editor();
+        new this.Views.Costumespane();
 
         $(".draggable").draggable({
             helper: "clone",
@@ -27,7 +28,6 @@ window.Playground = {
         $("#editor_workspace ul").sortable({
             stop: function(event, ui) {
                 var controlBlocks = $("#workspace-sortable li").has("li");
-                // controlBlocks.find(".block-control-botm").last().css("margin-top","-14px");
                 var subBlocks = controlBlocks.find("li");
                 var height = 97;
                 if (subBlocks.length>1) {

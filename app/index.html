@@ -49,15 +49,20 @@
             </div>
             <div class="right-col">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#">Scripts</a></li>
-                    <li><a href="#">Costumes</a></li>
+                    <li class="active"><a href="#editor" role="tab" data-toggle="tab">Scripts</a></li>
+                    <li><a href="#costumes-pane" role="tab" data-toggle="tab">Costumes</a></li>
                 </ul>
-                <div id="editor" class="block editor">
-                    <div id="editor_toolbar" class="editor-toolbar">
-                        <!-- Backbone editor toolbar view -->
+                <div class="tab-content">
+                    <div id="editor" class="block editor tab-pane active">
+                        <div id="editor_toolbar" class="editor-toolbar">
+                            <!-- Backbone editor toolbar view -->
+                        </div>
+                        <div id="editor_workspace" class="block editor-workspace">
+                            <!-- Backbone editor workspace -->
+                        </div>
                     </div>
-                    <div id="editor_workspace" class="block editor-workspace">
-                        <!-- Backbone editor workspace -->
+                    <div id="costumes-pane" class="block costumes-pane tab-pane">
+                        <!-- Backbone costumes-pane -->
                     </div>
                 </div>
             </div>
@@ -97,6 +102,7 @@
         <script src="scripts/views/background.js"></script>
         <script src="scripts/views/command.js"></script>
         <script src="scripts/views/toolbar.js"></script>
+        <script src="scripts/views/costumesPane.js"></script>
         <!-- endbuild -->
 </body>
 </html>
