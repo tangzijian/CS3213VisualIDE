@@ -18,6 +18,14 @@ window.Playground = {
             connectToSortable: "#workspace-sortable",
             tolerance: "touch",
             stop: function(event, ui) {
+                var blockLength = $("#workspace-sortable").find("li").length;
+                if (blockLength > 0) {
+                    $("#drag-a-command-alert").hide();
+                    $(".workspace-list").css("margin-top","0px");
+                } else {
+                    $("#drag-a-command-alert").show();
+                    $(".workspace-list").css("margin-top","-40px");
+                }
                 $("#editor_workspace li").removeClass("draggable ui-draggable ui-draggable-handle");
                 $("#editor_workspace ul").addClass("ui-sortable");
                 $("#editor_workspace ul").sortable({
@@ -35,7 +43,6 @@ window.Playground = {
                 }
             }
         });
-        $("#editor_workspace ul").sortable("refreshPositions");
     }
 };
 

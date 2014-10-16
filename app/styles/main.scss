@@ -102,6 +102,9 @@ li {
 
 .workspace-list {
 	list-style-type: none;
+	min-height: 640px;
+	min-width: 600px;
+	margin-top: -40px;
 }
 
 .toolbar {
