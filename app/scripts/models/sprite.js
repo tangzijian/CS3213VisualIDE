@@ -89,48 +89,48 @@ Playground.Models = Playground.Models || {};
 
         setXPos: function(xPosition){
             this.set('xPos',xPosition);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name: "setXPos", backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name: "setXPos", backgroundImg:this.backgroundImg};
             return obj;
         },
 
         setYPos: function(yPosition){
             this.set('yPos',yPosition);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name: "setYPos",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name: "setYPos",backgroundImg:this.backgroundImg};
             return obj;
         },
 
         changeCostume: function(link){
             this.set('costume',link);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name:"changeCostume",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"changeCostume",backgroundImg:this.backgroundImg};
             return obj;
         },
 
         changeBackground: function(link){
             this.set('backgroundImg',link);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name:"changeBackground",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"changeBackground",backgroundImg:this.backgroundImg};
             return obj;
         },
 
         show: function(){
             this.set('isShown',true);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name:"show",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"show",backgroundImg:this.backgroundImg};
             return obj;
         },
 
         hide: function(){
             this.set('isShown',false);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name:"hide",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"hide",backgroundImg:this.backgroundImg};
             return obj;
         },
 
         move: function(steps){
             this.set('xPos',xPos+steps);
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name:"move",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"move",backgroundImg:this.backgroundImg};
             return obj;
         },
 
         repeat: function(commands, iterations){
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, name:"repeat",backgroundImg:this.backgroundImg};
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"repeat",backgroundImg:this.backgroundImg, times: iterations, commands: commands};
             return obj;
         },
 
