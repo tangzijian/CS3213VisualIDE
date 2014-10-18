@@ -12,8 +12,7 @@ Playground.Views = Playground.Views || {};
         el: '#player',
 
         events: {
-         // "click play_button" :    "play",
-        // "click stop_button" :    "stop"
+            "change .model.isReady": "play",
         },
 
         
