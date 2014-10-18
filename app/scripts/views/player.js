@@ -72,11 +72,12 @@ Playground.Views = Playground.Views || {};
         },
 
         executeFunctions: function(){
-            this.clearCanvas();
+            
             this.commands_list = this.model.array_of_commands;
             var index;
             console.log(this.model.array_of_commands);
             for(index = 0; index<this.commands_list.length;index++){
+                
                 var command = this.commands_list[index];
                 this.executeCommand(command);
             }
@@ -86,10 +87,12 @@ Playground.Views = Playground.Views || {};
              switch(command.name){
                     case "setXPos":
                         this.current_status.xPos = command.para[0];
+                        if(this.current_status.shown)
                         this.draw();
                         break;
                     case "setYPos":
                         this.current_status.yPos = command.para[0];
+                        if(this.current_status.shown)
                         this.draw();
                         break;
                     case "show":
@@ -97,6 +100,7 @@ Playground.Views = Playground.Views || {};
                         this.draw();
                         break;
                     case "hide":
+                        this.clearCanvas();
                         this.current_status.shown = false;
                         break;
                     case "move":

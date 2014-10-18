@@ -55,19 +55,19 @@ Playground.Models = Playground.Models || {};
                 break;
                 case "command_hide":
                 console.log("add fourth type of function: hide");
-                this.array_of_commands.splice(position,0,{name: "hide"}, para: parameters);
+                this.array_of_commands.splice(position,0,{name: "hide", para: parameters});
                 break;
                 case "command_show":
                 console.log("add fourth type of function: show");
-                this.array_of_commands.splice(position,0,{name: "show"}, para: parameters);
+                this.array_of_commands.splice(position,0,{name: "show", para: parameters});
                 break;
                 case "command_move":
                 console.log("add fourth type of function: move");
-                this.array_of_commands.splice(position,0,{name: "move"}, para: parameters);
+                this.array_of_commands.splice(position,0,{name: "move", para: parameters});
                 break;
                 case "command_repeat":
                 console.log("add fourth type of function: repeat");
-                this.array_of_commands.splice(position,0,{name: "repeat"}, para: parameters);
+                this.array_of_commands.splice(position,0,{name: "repeat", para: parameters});
                 break;
                 default:
                 console.log("invalid command: "+type);
