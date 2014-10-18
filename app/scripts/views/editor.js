@@ -63,6 +63,7 @@ Playground.Views = Playground.Views || {};
 
         updateModel: function() {
             console.log("update model "+this.commandList.length);
+            this.model.array_of_commands = [];
             for(var i=0; i<this.commandList.length; i++) {
                 var command = this.commandList[i];
                 var type = $(command).attr('class').split(' ').pop();
@@ -71,6 +72,8 @@ Playground.Views = Playground.Views || {};
                 var value = parseInt($(command).find("input").last().val());
                 this.model.add(type, position, [value, repeatBlockLength]);
             }
+            this.model.isReady = true;
+            console.log(this.model);
         }
     });
 

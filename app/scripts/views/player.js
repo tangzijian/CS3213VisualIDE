@@ -12,7 +12,6 @@ Playground.Views = Playground.Views || {};
         el: '#player',
 
         events: {
-            "change .model.isReady": "play",
         },
 
         
@@ -31,7 +30,11 @@ Playground.Views = Playground.Views || {};
         movements: [],
 
         initialize: function () {
-            console.log(this.model);            
+            var that = this;
+            $("#play_button").click(function(e){
+                that.testChangeListener();       
+            });
+      /*           
             this.current_status = {              // init status
                         xPos: this.model.get('xPos'),
                         yPos: this.model.get('yPos'),
@@ -40,21 +43,23 @@ Playground.Views = Playground.Views || {};
                         function_name: '',
                         backgroundImg : this.model.get('backgroundImg'),
             };
-            this.render();
-            console.log(this.commands_list);
-            console.log( this.model.get('array_of_commands'));
-
-            // this.command_list[0] = func;
-            // console.log(this.commands_list);
-            this.play();
+            */
+       //     this.render();
+     //       this.play();
+            
         },
 
         render: function () {
+
             this.w = this.$el.width();
             this.h = this.$el.height();
             this.$el.html(this.template({id:'player_canvas',width: this.w,height: this.h}));
             this.ctx = document.getElementById('player_canvas').getContext("2d");
             this.ctx.fillText("TESTING!!!!!!!!", 100, 100);          // for testing purpose
+        },
+
+        testChangeListener: function(){
+            console.log("changed isReady!");
         },
 
         play: function (){
@@ -102,8 +107,11 @@ Playground.Views = Playground.Views || {};
 
 
         gameLoop: function(){
+            console.log("hahaha");
+            /*
             this.draw();                         // draw current status
             this.update();                       // update current status to desired(post) status
+            */
         },
 
         draw: function(){
