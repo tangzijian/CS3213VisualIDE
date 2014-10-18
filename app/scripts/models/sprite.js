@@ -15,6 +15,7 @@ Playground.Models = Playground.Models || {};
         array_of_commands: [],
         commands: {name: "", para: []},
         backgroundImg: '',
+        isReady: false,
 
         initialize: function() {
         },
@@ -27,6 +28,7 @@ Playground.Models = Playground.Models || {};
             url: '',
             array_of_commands: [],
             backgroundImg: '',
+            isReady: false,
         },
 
         validate: function(attrs, options) {
@@ -40,64 +42,64 @@ Playground.Models = Playground.Models || {};
            switch(type){
                 case "command_set_x":
                 console.log("add first type of function: setXPos");
-                commands.name = "setXPos";
-                commands.para = parameters;
+                this.commands.name = "setXPos";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_set_y":
                 console.log("add second type of function: setYPos");
-                commands.name = "setYPos";
-                commands.para = parameters;
+                this.commands.name = "setYPos";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_change_costume":
                 console.log("add third type of function: changeCostume");
-                 commands.name = "changeCostume";
-                commands.para = parameters;
+                this.commands.name = "changeCostume";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_change_background":
                 console.log("add fourth type of function: changeBackground");
-                 commands.name = "changeBackground";
-                commands.para = parameters;
+                this.commands.name = "changeBackground";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_hide":
                 console.log("add fourth type of function: hide");
-                 commands.name = "hide";
-                commands.para = parameters;
+                this.commands.name = "hide";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_show":
                 console.log("add fourth type of function: show");
-                 commands.name = "show";
-                commands.para = parameters;
+                this.commands.name = "show";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_move":
                 console.log("add fourth type of function: move");
-                 commands.name = "move";
-                commands.para = parameters;
+                this.commands.name = "move";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);
                 break;
                 case "command_repeat":
                 console.log("add fourth type of function: repeat");
-                 commands.name = "repeat";
-                commands.para = parameters;
+                this.commands.name = "repeat";
+                this.commands.para = parameters;
                 console.log(commands);
                 this.get('array_of_commands').splice(position,0,commands);
                 console.log(array_of_commands);

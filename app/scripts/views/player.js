@@ -109,18 +109,19 @@ Playground.Views = Playground.Views || {};
         },
 
         draw: function(){
-            var character = document.createElement('img');
-            
             var that = this;
-
-            var bg = this.current_status.backgroungImg;
+            var character = document.createElement('img');
+            var bg = document.createElement('img');
             var shown = this.current_status.isShown;
             // console.log(shown);
 
             // this.ctx.clearRect(0, 0, this.w, this.h);          // clear screen
-            // if (bg != ''){  
-            //     this.ctx.drawImage(bg, 0, 0);        // draw background if applicable
-            // }; 
+
+            if (bg != ''){  
+                bg.onload = function(){
+                    that.ctx.drawImage(bg, 0, 0);        // draw background if applicable
+                }
+            }; 
             // if (shown){              ​  // This selection causes ILLEGAL. why?!!!!!!!!!!!!!!!!!!!!!!
                 this.ctx.fillText("TESTING HERE!!!!!!!!", 300, 300);          // for testing purpose
                 character.onload = function(){
@@ -131,6 +132,7 @@ Playground.Views = Playground.Views || {};
                 };
                 console.log("outside this", this);
                 character.src = this.current_status.costume;    
+                bg.src = this.current_status.backgroungImg;
             // }
         },
     
