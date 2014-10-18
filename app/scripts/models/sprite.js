@@ -11,7 +11,6 @@ Playground.Models = Playground.Models || {};
         yPos : 0,
         isShown :true,
         costume :'./images/costume1.jpg',
-        url: '',
         array_of_functions: [],
         parameters: [],
         backgroundImg: '',
@@ -24,7 +23,6 @@ Playground.Models = Playground.Models || {};
             yPos : 0,
             isShown :true,
             costume :'./images/costume1.jpg',
-            url: '',
             array_of_functions: [],
             background: '',
         },
@@ -36,50 +34,50 @@ Playground.Models = Playground.Models || {};
             return response;
         },
 
-        add: function(index, position, parameters){
+        add: function(type, position, parameters){
             this.set('parameters',parameters);
-           switch(index){
-                case 0:
+            switch(type){
+                case command_set_x:
                 console.log("add first type of function: setXPos");
                 this.array_of_functions.splice(position,0,this.setXPos);
                 console.log(this.array_of_functions);
                 break;
-                case 1:
+                case command_set_y:
                 console.log("add second type of function: setYPos");
                 this.array_of_functions.splice(position,0,this.setYPos);
                 console.log(this.array_of_functions);
                 break;
-                case 2:
+                case command_change_constume:
                 console.log("add third type of function: changeCostume");
                 this.array_of_functions.splice(position,0,this.changeCostume);
                 console.log(this.array_of_functions);
                 break;
-                case 3:
+                case command_change_background:
                 console.log("add fourth type of function: changeBackground");
                 this.array_of_functions.splice(position,0,this.changeBackground);
                 console.log(this.array_of_functions);
                 break;
-                case 4:
+                case command_hide:
                 console.log("add fourth type of function: hide");
                 this.array_of_functions.splice(position,0,this.hide);
                 console.log(this.array_of_functions);
                 break;
-                case 5:
+                case command_show:
                 console.log("add fourth type of function: show");
                 this.array_of_functions.splice(position,0,this.show);
                 console.log(this.array_of_functions);
                 break;
-                case 6:
+                case command_move:
                 console.log("add fourth type of function: move");
                 this.array_of_functions.splice(position,0,this.move);
                 console.log(this.array_of_functions);
                 break;
-                case 7:
+                case command_repeat:
                 console.log("add fourth type of function: repeat");
                 this.array_of_functions.splice(position,0,this.repeat);
                 console.log(this.array_of_functions);
                 break;
-           }
+            }
         },
 
         deleteCommand: function(position){
