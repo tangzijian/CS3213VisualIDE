@@ -121,7 +121,7 @@ Playground.Views = Playground.Views || {};
             // if (bg != ''){  
             //     this.ctx.drawImage(bg, 0, 0);        // draw background if applicable
             // }; 
-            if (shown){              ​  // This selection causes ILLEGAL. why?!!!!!!!!!!!!!!!!!!!!!!
+            // if (shown){              ​  // This selection causes ILLEGAL. why?!!!!!!!!!!!!!!!!!!!!!!
                 this.ctx.fillText("TESTING HERE!!!!!!!!", 300, 300);          // for testing purpose
                 character.onload = function(){
                     console.log("that", that);
@@ -131,7 +131,7 @@ Playground.Views = Playground.Views || {};
                 };
                 console.log("outside this", this);
                 character.src = this.current_status.costume;    
-            }
+            // }
         },
     
         update: function (){
@@ -144,10 +144,10 @@ Playground.Views = Playground.Views || {};
                     this.current_status.yPos = this.current_status.yPos + movements[0];
                     break;
                 case ("changeCostume"):
-                    this.current_status.costume = ;
+                    this.current_status.costume = movements[0];
                     break;
                 case ("changeBackground"):
-                    this.current_status.backgroungImg = this.post_status.backgroungImg;
+                    this.current_status.backgroungImg = movements[0];
                     break;
                 case ("show"):
                     this.current_status.isShown = true;
