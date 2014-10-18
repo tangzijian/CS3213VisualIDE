@@ -72,7 +72,7 @@ Playground.Views = Playground.Views || {};
         },
 
         executeFunctions: function(){
-            
+            this.clearCanvas();
             this.commands_list = this.model.array_of_commands;
             var index;
             console.log(this.model.array_of_commands);
@@ -100,7 +100,7 @@ Playground.Views = Playground.Views || {};
                         this.draw();
                         break;
                     case "hide":
-                        this.clearCanvas();
+              //          this.clearCanvas();
                         this.current_status.shown = false;
                         break;
                     case "move":
