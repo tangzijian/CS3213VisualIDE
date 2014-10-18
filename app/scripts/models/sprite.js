@@ -11,8 +11,9 @@ Playground.Models = Playground.Models || {};
         yPos : 0,
         isShown :true,
         costume :'./images/costume1.jpg',
-        array_of_functions: [],
-        parameters: [],
+        url: '',
+        array_of_commands: [],
+        commands: {name: "", para: []},
         backgroundImg: '',
 
         initialize: function() {
@@ -23,8 +24,9 @@ Playground.Models = Playground.Models || {};
             yPos : 0,
             isShown :true,
             costume :'./images/costume1.jpg',
-            array_of_functions: [],
-            background: '',
+            url: '',
+            array_of_commands: [],
+            backgroundImg: '',
         },
 
         validate: function(attrs, options) {
@@ -35,76 +37,100 @@ Playground.Models = Playground.Models || {};
         },
 
         add: function(type, position, parameters){
-            this.set('parameters',parameters);
-            switch(type){
-                case command_set_x:
+           switch(type){
+                case "command_set_x":
                 console.log("add first type of function: setXPos");
-                this.array_of_functions.splice(position,0,this.setXPos);
-                console.log(this.array_of_functions);
+                commands.name = "setXPos";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_set_y:
+                case "command_set_y":
                 console.log("add second type of function: setYPos");
-                this.array_of_functions.splice(position,0,this.setYPos);
-                console.log(this.array_of_functions);
+                commands.name = "setYPos";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_change_constume:
+                case "command_change_costume":
                 console.log("add third type of function: changeCostume");
-                this.array_of_functions.splice(position,0,this.changeCostume);
-                console.log(this.array_of_functions);
+                 commands.name = "changeCostume";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_change_background:
+                case "command_change_background":
                 console.log("add fourth type of function: changeBackground");
-                this.array_of_functions.splice(position,0,this.changeBackground);
-                console.log(this.array_of_functions);
+                 commands.name = "changeBackground";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_hide:
+                case "command_hide":
                 console.log("add fourth type of function: hide");
-                this.array_of_functions.splice(position,0,this.hide);
-                console.log(this.array_of_functions);
+                 commands.name = "hide";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_show:
+                case "command_show":
                 console.log("add fourth type of function: show");
-                this.array_of_functions.splice(position,0,this.show);
-                console.log(this.array_of_functions);
+                 commands.name = "show";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_move:
+                case "command_move":
                 console.log("add fourth type of function: move");
-                this.array_of_functions.splice(position,0,this.move);
-                console.log(this.array_of_functions);
+                 commands.name = "move";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
-                case command_repeat:
+                case "command_repeat":
                 console.log("add fourth type of function: repeat");
-                this.array_of_functions.splice(position,0,this.repeat);
-                console.log(this.array_of_functions);
+                 commands.name = "repeat";
+                commands.para = parameters;
+                console.log(commands);
+                this.get('array_of_commands').splice(position,0,commands);
+                console.log(array_of_commands);
                 break;
             }
         },
 
         deleteCommand: function(position){
-            delete this.array_of_functions[position];
-            console.log(this.array_of_functions);
+            delete this.array_of_commands[position];
+            console.log(this.array_of_commands);
         },
 
-        setXPos: function(xPosition){
-            this.set('xPos',xPosition);
+/*
+        setXPos: function(){
+            this.set('xPos',this.parameters[0]);
             var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name: "setXPos", backgroundImg:this.backgroundImg};
             return obj;
         },
 
-        setYPos: function(yPosition){
-            this.set('yPos',yPosition);
+        setYPos: function(){
+            this.set('yPos',this.parameters[0]);
             var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name: "setYPos",backgroundImg:this.backgroundImg};
             return obj;
         },
 
-        changeCostume: function(link){
-            this.set('costume',link);
+        changeCostume: function(){
+            this.set('costume',this.parameters[0]);
             var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"changeCostume",backgroundImg:this.backgroundImg};
             return obj;
         },
 
-        changeBackground: function(link){
-            this.set('backgroundImg',link);
+        changeBackground: function(){
+            this.set('backgroundImg',this.parameters[0]);
             var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"changeBackground",backgroundImg:this.backgroundImg};
             return obj;
         },
@@ -121,18 +147,17 @@ Playground.Models = Playground.Models || {};
             return obj;
         },
 
-        move: function(steps){
-            this.set('xPos',xPos+steps);
+        move: function(){
+            this.set('xPos',xPos+parameters[0]);
             var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"move",backgroundImg:this.backgroundImg};
             return obj;
         },
 
-        repeat: function(commands, iterations){
-            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"repeat",backgroundImg:this.backgroundImg, times: iterations, commands: commands};
+        repeat: function(){
+            var obj = {xPos: this.xPos, yPos: this.yPos, isShown: this.isShown, costume: this.costume, function_name:"repeat",backgroundImg:this.backgroundImg, times: parameters[0], commands: this.parameters[1]};
             return obj;
         },
-
+*/
 
     });
-
 })();
