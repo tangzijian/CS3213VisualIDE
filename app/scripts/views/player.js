@@ -18,9 +18,9 @@ Playground.Views = Playground.Views || {};
 
         
         current_status : {},                  // draw this status in current frame
-        post_status : {},                     // disired statues after function func
-        func : null,                            // current function executing
-        function_list : [],                     // list of functions need to be executed
+        // post_status : {},                     // disired statues after function func
+        func_name : '',                            // current function executing
+        commands_list : [],                     // list of functions need to be executed
         index : 0,                              // index in function_list
         loop_layer : -1,                        // -1 for sequensial, 0 indicates i'm in single loop, 1 means i'm inside double loop
         iteration : [],                         // it[0] indicates num of iterations for single loop 
@@ -29,6 +29,7 @@ Playground.Views = Playground.Views || {};
         ctx : null,
         w : null,
         h : null,
+        movements: [],
 
         initialize: function () {
             
@@ -36,16 +37,17 @@ Playground.Views = Playground.Views || {};
             this.current_status = {              // init status
                         xPos: this.model.get('xPos'),
                         yPos: this.model.get('yPos'),
-                        isShown: true, 
+                        isShown: this.model.get('isShown'), 
                         costume: this.model.get('costume'),
                         function_name: '',
-                        backgroundImg : ''
+                        backgroundImg : this.model.get('backgroundImg'),
             };
             this.render();
-            console.log(this.function_list);
-            console.log( this.model.get('array_of_functions'));
-            this.function_list = this.model.get('array_of_functions'),
-            console.log(this.function_list);
+            console.log(this.commands_list);
+            console.log( this.model.get('array_of_commands'));
+
+            // this.command_list[0] = func;
+            // console.log(this.commands_list);
             this.play();
         },
 
@@ -61,9 +63,9 @@ Playground.Views = Playground.Views || {};
             
             setInterval(this.gameLoop(),1000/this.FPS);           // starts game loop
 
-            this.function_list = this.model.get('array_of_functions');   // fetch function list 
-
-            this.execute(0, this.function_list.length);           // execute ".length" number of functions from function 0, 
+            // this.commands_list = this.model.get('array_of_functions');   // fetch function list 
+            console.log("bai_functions", this.commands_list);
+            this.execute(0, this.commands_list.length);           // execute ".length" number of functions from function 0, 
         },
 
         execute: function(start, len){
@@ -72,13 +74,13 @@ Playground.Views = Playground.Views || {};
             var j = 0;
 
             while( i++ < len) {                         
-                this.func = this.function_list[index];            // fetch specific function
+                this.func_name = this.commands_list[this.index].commands.name;            // fetch specific function
                 console.log("calling ", this.func);             
-                this.post_status = this.func();                   // get desired status
+                movements = this.commands_list[this.index].commands.para                   // get desired status
 
-                if (this.post_status.function_name == 'isRepeat'){
-                    this.iteration[++loop_layer] = this.post_status.times;        // get number of iteration of this loop
-                    this.commands_iter[loop_layer] = this.post_status.commands;   // get numebr of commands included in this loop
+                if (this.func_name == 'isRepeat'){
+                    this.iteration[++loop_layer] = movements[0];        // get number of iteration of this loop
+                    this.commands_iter[loop_layer] = movements[1];   // get numebr of commands included in this loop
                     start = ++this.index;                                    // set start be the next function index  
                     if (this.iteration[loop_layer] == 'forever'){
                         while (1){
@@ -93,7 +95,9 @@ Playground.Views = Playground.Views || {};
                     }
                 }
                 else{
+                    console.log("prev index", this.index);
                     this.index++;                                            // not repeat, sequensial
+                    console.log("post index", this.index);
                 }
             }
         },
@@ -101,7 +105,7 @@ Playground.Views = Playground.Views || {};
 
         gameLoop: function(){
             this.draw();                         // draw current status
-            // this.update();                       // update current status to desired(post) status
+            this.update();                       // update current status to desired(post) status
         },
 
         draw: function(){
@@ -131,31 +135,31 @@ Playground.Views = Playground.Views || {};
         },
     
         update: function (){
-            if (this.current_status != this.post_status){
-                this.current_status.function_name = this.post_status.function_name;
-                switch(post_status.function_name){
-                    case ("setXPos"):
-                        this.current_status.xPos = this.post_status.xPos;
-                        break;
-                    case ("setYPos"):
-                        this.current_status.yPos = this.post_status.yPos;
-                        break;
-                    case ("changeCostume"):
-                        this.current_status.costume = this.post_status.costume;
-                        break;
-                    case ("changeBackground"):
-                        this.current_status.backgroungImg = this.post_status.backgroungImg;
-                        break;
-                    case ("show"):
-                        this.current_status.isShown = this.post_status.isShown;
-                        break;
-                    case ("hide"):
-                        this.current_status.isShown = this.post_status.isShown;
-                        break;
-                    case ("move"):
+            
+            switch(this.func_name){
+                case ("setXPos"):
+                    this.current_status.xPos = this.current_status.xPos + movements[0];
+                    break;
+                case ("setYPos"):
+                    this.current_status.yPos = this.current_status.yPos + movements[0];
+                    break;
+                case ("changeCostume"):
+                    this.current_status.costume = movements[0];
+                    break;
+                case ("changeBackground"):
+                    this.current_status.backgroungImg = movements[0];
+                    break;
+                case ("show"):
+                    this.current_status.isShown = true;
+                    break;
+                case ("hide"):
+                    this.current_status.isShown = false;
+                    break;
+                case ("move"):
+                    while (this.current_status.xPos != this.current_status.xPos + movements[0]){
                         this.current_status.xPos++;                  // move one step per frame, until it reaches the desired xPos
-                        break;
-                }
+                    }
+                    break;
             }
         },
 
