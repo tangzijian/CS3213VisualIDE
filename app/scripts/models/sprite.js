@@ -44,66 +44,52 @@ Playground.Models = Playground.Models || {};
                 console.log("add first type of function: setXPos");
                 this.commands.name = "setXPos";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_set_y":
                 console.log("add second type of function: setYPos");
                 this.commands.name = "setYPos";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_change_costume":
                 console.log("add third type of function: changeCostume");
                 this.commands.name = "changeCostume";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_change_background":
                 console.log("add fourth type of function: changeBackground");
                 this.commands.name = "changeBackground";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_hide":
                 console.log("add fourth type of function: hide");
                 this.commands.name = "hide";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_show":
                 console.log("add fourth type of function: show");
                 this.commands.name = "show";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_move":
                 console.log("add fourth type of function: move");
                 this.commands.name = "move";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
                 case "command_repeat":
                 console.log("add fourth type of function: repeat");
                 this.commands.name = "repeat";
                 this.commands.para = parameters;
-                console.log(commands);
-                this.get('array_of_commands').splice(position,0,commands);
-                console.log(array_of_commands);
+                this.get('array_of_commands').splice(position,0,this.commands);
                 break;
+                default:
+                console.log("invalid command: "+type);
             }
         },
 

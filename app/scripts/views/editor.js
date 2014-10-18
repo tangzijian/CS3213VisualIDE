@@ -14,8 +14,11 @@ Playground.Views = Playground.Views || {};
         commandList: [],
 
         initialize: function () {
-            this.render();
             var that = this;
+            $("#play_button").click(function(e){
+                that.updateModel();       
+            });
+            this.render();
             $(".draggable").draggable({
                 helper: "clone",
                 connectToSortable: "#workspace-sortable",
@@ -35,7 +38,6 @@ Playground.Views = Playground.Views || {};
                         connectWith: "#editor_workspace ul"
                     });
                     that.commandList = that.getCommandList();
-                    that.updateModel();
                 }
             });
             $("#editor_workspace ul").sortable({
@@ -60,7 +62,7 @@ Playground.Views = Playground.Views || {};
         },
 
         updateModel: function() {
-            console.log("update model");
+            console.log("update model "+this.commandList.length);
             for(var i=0; i<this.commandList.length; i++) {
                 var command = this.commandList[i];
                 var type = $(command).attr('class').split(' ').pop();

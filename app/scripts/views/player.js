@@ -32,7 +32,6 @@ Playground.Views = Playground.Views || {};
         movements: [],
 
         initialize: function () {
-            
             console.log(this.model);            
             this.current_status = {              // init status
                         xPos: this.model.get('xPos'),
