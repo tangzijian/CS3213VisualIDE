@@ -26,7 +26,6 @@ Playground.Views = Playground.Views || {};
         ctx : null,
         w : null,
         h : null,
-        movements: [],
 
         initialize: function () {
             var that = this;
@@ -79,8 +78,12 @@ Playground.Views = Playground.Views || {};
             console.log(this.model.array_of_commands);
             for(index = 0; index<this.commands_list.length;index++){
                 var command = this.commands_list[index];
-                console.log(command);
-                switch(command.name){
+                this.executeCommand(command);
+            }
+        },
+
+        executeCommand: function(command){
+             switch(command.name){
                     case "setXPos":
                         this.current_status.xPos = command.para[0];
                         this.draw();
@@ -96,10 +99,21 @@ Playground.Views = Playground.Views || {};
                     case "hide":
                         this.current_status.shown = false;
                         break;
+                    case "move":
+                        //move in current facing direction
+                        break;
+                    case "changeCostume":
+
+                        break;
+                    case "changeBackground":
+
+                        break;
+                    case "repeat":
+
+                        break;
                     default:
-                    console.log(command.para[0]);
+                        console.log("invalid command, error in code somewhere");
                 }
-            }
         },
 
         clearCanvas: function(){
@@ -123,100 +137,6 @@ Playground.Views = Playground.Views || {};
             character.src = this.current_status.costume;    
             bg.src = this.current_status.backgroungImg;
         },
-
-        execute: function(start, len){
-            // stop onclick 'stop'
-            var i = 0;
-            var j = 0;
-
-            while( i++ < len) {                         
-                this.func_name = this.commands_list[this.index].commands.name;            // fetch specific function
-                console.log("calling ", this.func);             
-                movements = this.commands_list[this.index].commands.para                   // get desired status
-
-                if (this.func_name == 'isRepeat'){
-                    this.iteration[++loop_layer] = movements[0];        // get number of iteration of this loop
-                    this.commands_iter[loop_layer] = movements[1];   // get numebr of commands included in this loop
-                    start = ++this.index;                                    // set start be the next function index  
-                    if (this.iteration[loop_layer] == 'forever'){
-                        while (1){
-                        this.execute(start, this.commands_iter[loop_layer]);      // infinite loop case, only wait for stop.
-                        }
-                    }
-                    else {
-                        while (j++ < this.iteration[loop_layer]){            
-                        this.execute(start, this.commands_iter[loop_layer]);      // finite loop case
-                        }
-                        this.loop_layer--;                                   // after jumped out, reduce layer. 
-                    }
-                }
-                else{
-                    console.log("prev index", this.index);
-                    this.index++;                                            // not repeat, sequensial
-                    console.log("post index", this.index);
-                }
-            }
-        },
-
-/*
-        draw: function(){
-            var that = this;
-            var character = document.createElement('img');
-            var bg = document.createElement('img');
-            var shown = this.current_status.isShown;
-            // console.log(shown);
-
-            // this.ctx.clearRect(0, 0, this.w, this.h);          // clear screen
-
-            if (bg != ''){  
-                bg.onload = function(){
-                    that.ctx.drawImage(bg, 0, 0);        // draw background if applicable
-                }
-            }; 
-            // if (shown){              ​  // This selection causes ILLEGAL. why?!!!!!!!!!!!!!!!!!!!!!!
-                this.ctx.fillText("TESTING HERE!!!!!!!!", 300, 300);          // for testing purpose
-                character.onload = function(){
-                    console.log("that", that);
-                    console.log(that.current_status);
-                    console.log(that.current_status.xPos, that.current_status.yPos, character.width, character.height);
-                    that.ctx.drawImage(character,that.current_status.xPos, that.current_status.yPos); //character.width, character.height);     // draw costume if status isShown is true.
-                };
-                console.log("outside this", this);
-                character.src = this.current_status.costume;    
-                bg.src = this.current_status.backgroungImg;
-            // }
-        },*/
-      
-    
-        update: function (){
-            
-            switch(this.func_name){
-                case ("setXPos"):
-                    this.current_status.xPos = this.current_status.xPos + movements[0];
-                    break;
-                case ("setYPos"):
-                    this.current_status.yPos = this.current_status.yPos + movements[0];
-                    break;
-                case ("changeCostume"):
-                    this.current_status.costume = movements[0];
-                    break;
-                case ("changeBackground"):
-                    this.current_status.backgroungImg = movements[0];
-                    break;
-                case ("show"):
-                    this.current_status.isShown = true;
-                    break;
-                case ("hide"):
-                    this.current_status.isShown = false;
-                    break;
-                case ("move"):
-                    while (this.current_status.xPos != this.current_status.xPos + movements[0]){
-                        this.current_status.xPos++;                  // move one step per frame, until it reaches the desired xPos
-                    }
-                    break;
-            }
-        },
-
 
     });
 

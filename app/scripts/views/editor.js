@@ -72,6 +72,7 @@ Playground.Views = Playground.Views || {};
                 var repeatBlockLength = $("#workspace-sortable li").has("li").find("li").length;
                 var value = parseInt($(command).find("input").last().val());
                 this.model.add(type, position, [value, repeatBlockLength]);
+                console.log(this.model.array_of_commands);
             }
         }
     });
