@@ -16,7 +16,6 @@ Playground.Views = Playground.Views || {};
 
         
         current_status : {},                  // draw this status in current frame
-        // post_status : {},                     // disired statues after function func
         func_name : '',                            // current function executing
         commands_list : [],                     // list of functions need to be executed
         index : 0,                              // index in function_list
@@ -32,21 +31,18 @@ Playground.Views = Playground.Views || {};
         initialize: function () {
             var that = this;
             $("#play_button").click(function(e){
-                that.testChangeListener();       
+                that.updateCanvas();       
             });
-      /*           
+                
             this.current_status = {              // init status
                         xPos: this.model.get('xPos'),
                         yPos: this.model.get('yPos'),
                         isShown: this.model.get('isShown'), 
                         costume: this.model.get('costume'),
-                        function_name: '',
                         backgroundImg : this.model.get('backgroundImg'),
             };
-            */
-       //     this.render();
-     //       this.play();
-            
+            this.render();
+            this.draw();
         },
 
         render: function () {
@@ -55,20 +51,77 @@ Playground.Views = Playground.Views || {};
             this.h = this.$el.height();
             this.$el.html(this.template({id:'player_canvas',width: this.w,height: this.h}));
             this.ctx = document.getElementById('player_canvas').getContext("2d");
-            this.ctx.fillText("TESTING!!!!!!!!", 100, 100);          // for testing purpose
         },
 
-        testChangeListener: function(){
-            console.log("changed isReady!");
-        },
-
-        play: function (){
+        updateCanvas: function(){
+            console.log("Player view: play button clicked!");
             
-            setInterval(this.gameLoop(),1000/this.FPS);           // starts game loop
+            this.executeFunctions();
+            /* deleted gameloop, not necessary
+            (function (window) {
+                function gameLoop() {
+                console.log("Entering game loop");
+                console.log(this);
+                this.drawAtCurrentPosition();
+                
 
-            // this.commands_list = this.model.get('array_of_functions');   // fetch function list 
-            console.log("bai_functions", this.commands_list);
-            this.execute(0, this.commands_list.length);           // execute ".length" number of functions from function 0, 
+
+                }
+             window.setInterval(gameLoop, 1000 / 60); // 60fps
+            } (window));
+*/
+        },
+
+        executeFunctions: function(){
+            this.clearCanvas();
+            this.commands_list = this.model.array_of_commands;
+            var index;
+            console.log(this.model.array_of_commands);
+            for(index = 0; index<this.commands_list.length;index++){
+                var command = this.commands_list[index];
+                console.log(command);
+                switch(command.name){
+                    case "setXPos":
+                        this.current_status.xPos = command.para[0];
+                        this.draw();
+                        break;
+                    case "setYPos":
+                        this.current_status.yPos = command.para[0];
+                        this.draw();
+                        break;
+                    case "show":
+                        this.current_status.shown = true;
+                        this.draw();
+                        break;
+                    case "hide":
+                        this.current_status.shown = false;
+                        break;
+                    default:
+                    console.log(command.para[0]);
+                }
+            }
+        },
+
+        clearCanvas: function(){
+            this.ctx.clearRect(0, 0, document.getElementById('player_canvas').width, document.getElementById('player_canvas').height);
+        },
+
+        draw: function(){
+            var that = this;
+            var character = document.createElement('img');
+            var bg = document.createElement('img');
+            var shown = this.current_status.isShown;
+
+            if (bg != ''){  
+                bg.onload = function(){
+                    that.ctx.drawImage(bg, 0, 0);        // draw background if applicable
+                }
+            }; 
+            character.onload = function(){
+                that.ctx.drawImage(character,that.current_status.xPos, that.current_status.yPos); //character.width, character.height);     // draw costume if status isShown is true.
+            };
+            character.src = this.current_status.costume;    
+            bg.src = this.current_status.backgroungImg;
         },
 
         execute: function(start, len){
@@ -105,15 +158,7 @@ Playground.Views = Playground.Views || {};
             }
         },
 
-
-        gameLoop: function(){
-            console.log("hahaha");
-            /*
-            this.draw();                         // draw current status
-            this.update();                       // update current status to desired(post) status
-            */
-        },
-
+/*
         draw: function(){
             var that = this;
             var character = document.createElement('img');
@@ -140,7 +185,8 @@ Playground.Views = Playground.Views || {};
                 character.src = this.current_status.costume;    
                 bg.src = this.current_status.backgroungImg;
             // }
-        },
+        },*/
+      
     
         update: function (){
             
