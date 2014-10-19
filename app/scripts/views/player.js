@@ -89,6 +89,7 @@ Playground.Views = Playground.Views || {};
             console.log("I am in exe functions!");
             console.log(this.model.array_of_commands);
             for(ind = start; ind < (start+length); ind++){
+                console.log("first clear");
                 this.clearCanvas();
                 var command = this.commands_list[ind];
                 console.log(ind, command);
@@ -187,6 +188,7 @@ Playground.Views = Playground.Views || {};
 
         clearCanvas: function(){
             this.ctx.clearRect(0, 0, document.getElementById('player_canvas').width, document.getElementById('player_canvas').height);
+            console.log("canvas cleared!");
         },
 
         draw: function(){
@@ -194,8 +196,9 @@ Playground.Views = Playground.Views || {};
             var character = document.createElement('img');
             var bg = document.createElement('img');
             var shown = this.current_status.isShown;
+            console.log("second clear");
             this.clearCanvas();
-            console.log("canvas cleared!");
+            
             
             if (bg != ''){  
                 bg.onload = function(){
