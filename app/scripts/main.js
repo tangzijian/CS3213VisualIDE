@@ -13,7 +13,7 @@ window.Playground = {
         new this.Views.Toolbar();
         new this.Views.Editor({model: sprite});
         new this.Views.Player({model: sprite});
-        new this.Views.Costumespane();
+        new this.Views.Costumespane({model: sprite});
     }
 };
 

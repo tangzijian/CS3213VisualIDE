@@ -10,10 +10,6 @@ Playground.Views = Playground.Views || {};
         template: JST['app/scripts/templates/player.ejs'],
 
         el: '#player',
-
-        events: {
-        },
-
         
         current_status : {},                  // draw this status in current frame
         func_name : '',                            // current function executing
@@ -30,10 +26,18 @@ Playground.Views = Playground.Views || {};
         initialize: function () {
             var that = this;
             $("#play_button").click(function(e){
+<<<<<<< HEAD
 
+=======
+                e.preventDefault();
+>>>>>>> FETCH_HEAD
                 that.updateCanvas();       
             });
-                
+
+            $("#save-button").click(function(e){
+                e.preventDefault();
+                that.saveToServer();
+            });   
             this.current_status = {              // init status
                         xPos: this.model.get('xPos'),
                         yPos: this.model.get('yPos'),
@@ -51,6 +55,10 @@ Playground.Views = Playground.Views || {};
             this.h = this.$el.height();
             this.$el.html(this.template({id:'player_canvas',width: this.w,height: this.h}));
             this.ctx = document.getElementById('player_canvas').getContext("2d");
+        },
+
+        saveToServer: function() {
+            console.log("saveToServer");
         },
 
         updateCanvas: function(){
