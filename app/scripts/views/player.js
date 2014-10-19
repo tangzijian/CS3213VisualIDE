@@ -22,11 +22,12 @@ Playground.Views = Playground.Views || {};
         ctx : null,
         w : null,
         h : null,
+        costume: 0,
 
         initialize: function () {
             var that = this;
             $("#play_button").click(function(e){
-                e.preventDefault();
+           //     e.preventDefault();
                 that.updateCanvas();       
             });
 
@@ -41,7 +42,6 @@ Playground.Views = Playground.Views || {};
                         costumes: this.model.get('costumes'),
                         backgroundImg : this.model.get('backgroundImg'),
             };
-             console.log(this.model.get('costumes'));
             this.render();
             this.draw();
         },
@@ -126,7 +126,14 @@ Playground.Views = Playground.Views || {};
                         }
                         break;
                     case "changeCostume":
-                        this.current_status.costume = command.para[0];
+                        if(this.costume<(this.current_status.costumes.length-1)){
+                            console.log("change to 1");
+                            this.costume ++;
+                        }
+                        else if(this.costume===(this.current_status.costumes.length-1)){
+                            console.log("change back to 0");
+                            this.costume = 0;
+                        }
                         this.draw();
                         break;
                     case "changeBackground":
@@ -135,45 +142,49 @@ Playground.Views = Playground.Views || {};
                         break;
                     case "repeat":
                         console.log(command.para[0], command.para[1]);
-                        this.loop_layer++
-                        this.iteration[this.loop_layer] = command.para[0];
-                        this.commands_iter[this.loop_layer] = command.para[1];
-                        console.log("in", this.iteration[this.loop_layer], "times", this.commands_iter[this.loop_layer], "commands");   
-                        // if (this.iteration[this.loop_layer] == 'forever'){
-                        //     while (1){
-                        //         this.executeFunctions(id+1, this.commands_iter[this.loop_layer]);      // infinite loop case, only wait for stop.
-                        //     }
-                        // }
-                        // else {
+                        var i = 0;
+
+                        var that = this;
+                            // for(j=id+1; j<(id+command.para[1]+1); j++){
+                            //     that.executeCommand(j, that.commands_list[j]);
+                            // }
+
+                        var timer = function(){
+                         if(i <= command.para[0]) {
+                              i++;
+                              that.executeFunctions(id+1, command.para[1]);
+                              console.log(command.para[1]);
+                         } else {
+                              clearInterval(timer);
+                         }
+                        };
+
+                        setInterval(timer, 500);
+
+
+                   
+                       
+                        // this.loop_layer++;
+                        // this.iteration[this.loop_layer] = command.para[0];
+                        // this.commands_iter[this.loop_layer] = command.para[1];
+                        // console.log("in", this.iteration[this.loop_layer], "times", this.commands_iter[this.loop_layer], "commands");   
+                        // // if (this.iteration[this.loop_layer] ==='forever'){
+                        // //     while (1){
+                        // //         this.executeFunctions(id+1, this.commands_iter[this.loop_layer]);      // infinite loop case, only wait for stop.
+                        // //     }
+                        // // }
+                        // // else {
                         //     console.log("in", this.iteration[this.loop_layer], "times", this.commands_iter[this.loop_layer], "commands");
-                        //     for (var j = 0; this.iteration[this.loop_layer]; j++){
+                        //     for (j = 0; this.iteration[this.loop_layer]; j++){
                         //         this.executeFunctions(id+1, this.commands_iter[this.loop_layer]);      // finite loop case
                         //     }
                         //     this.loop_layer--;  
-                        // }                                 // after jumped out, reduce layer.                     
+                        // // }                                 // after jumped out, reduce layer.                     
                         break;
                     default:
                         console.log("invalid command, error in code somewhere");
                 }
         },
-
-// this.iteration[++loop_layer] = movements[0];        // get number of iteration of this loop
-//                     this.commands_iter[loop_layer] = movements[1];   // get numebr of commands included in this loop
-//                     start = ++this.index;                                    // set start be the next function index  
-//                     if (this.iteration[loop_layer] == 'forever'){
-//                         while (1){
-//                         this.execute(start, this.commands_iter[loop_layer]);      // infinite loop case, only wait for stop.
-//                         }
-//                     }
-//                     else {
-//                         while (j++ < this.iteration[loop_layer]){            
-//                         this.execute(start, this.commands_iter[loop_layer]);      // finite loop case
-//                         }
-//                         this.loop_layer--;                                   // after jumped out, reduce layer. 
-//                     }
-
-
-
 
         clearCanvas: function(){
             this.ctx.clearRect(0, 0, document.getElementById('player_canvas').width, document.getElementById('player_canvas').height);
@@ -185,6 +196,7 @@ Playground.Views = Playground.Views || {};
             var bg = document.createElement('img');
             var shown = this.current_status.isShown;
             this.clearCanvas();
+            console.log("canvas cleared!");
             
             if (bg != ''){  
                 bg.onload = function(){
@@ -197,7 +209,7 @@ Playground.Views = Playground.Views || {};
                     that.ctx.drawImage(character,that.current_status.xPos, that.current_status.yPos); //character.width, character.height);     // draw costume if status isShown is true.
                 }           
             };
-            character.src = this.current_status.costumes[0];    
+            character.src = this.current_status.costumes[this.costume];    
             bg.src = this.current_status.backgroundImg;
 
         },

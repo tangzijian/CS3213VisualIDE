@@ -71,6 +71,7 @@ Playground.Views = Playground.Views || {};
                 var position = i;
                 var repeatBlockLength = $("#workspace-sortable li").has("li").find("li").length;
                 var value = parseInt($(command).find("input").last().val());
+                console.log(value, repeatBlockLength);
                 this.model.add(type, position, [value, repeatBlockLength]);
                 console.log(this.model.array_of_commands);
             }
