@@ -11,9 +11,9 @@ Playground.Models = Playground.Models || {};
         yPos : 0,
         isShown :true,
         costumes :['../images/costume1.png','../images/costume2.png'],
+        backgroundImg: [],
         url: '',
         array_of_commands: [],
-        backgroundImg: '',
 
         initialize: function() {
         },
@@ -23,9 +23,10 @@ Playground.Models = Playground.Models || {};
             yPos : 0,
             isShown :true,
             costumes :['../images/costume1.png','../images/costume2.png'],
+            backgroundImg: [],
             url: '',
             array_of_commands: [],
-            backgroundImg: '',
+            
         },
 
         validate: function(attrs, options) {
