@@ -30,6 +30,7 @@ Playground.Views = Playground.Views || {};
         initialize: function () {
             var that = this;
             $("#play_button").click(function(e){
+
                 that.updateCanvas();       
             });
                 
@@ -54,8 +55,10 @@ Playground.Views = Playground.Views || {};
 
         updateCanvas: function(){
             console.log("Player view: play button clicked!");
-            
-            this.executeFunctions();
+            this.commands_list = this.model.array_of_commands;
+            this.executeFunctions(0, this.commands_list.length);
+            // window.setInterval(this.gameLoop, 1000/30);
+
             /* deleted gameloop, not necessary
             (function (window) {
                 function gameLoop() {
@@ -71,54 +74,101 @@ Playground.Views = Playground.Views || {};
 */
         },
 
-        executeFunctions: function(){
-            this.clearCanvas();
-            this.commands_list = this.model.array_of_commands;
-            var index;
+        // gameLoop : function(){
+        //     this.draw();
+        //     this.executeCommand();
+        // }
+
+        executeFunctions: function(start, length){
+            var ind;
+            console.log("I am in exe functions!");
             console.log(this.model.array_of_commands);
-            for(index = 0; index<this.commands_list.length;index++){
-                
-                var command = this.commands_list[index];
-                this.executeCommand(command);
+            for(ind = start; ind < (start+length); ind++){
+                this.clearCanvas();
+                var command = this.commands_list[ind];
+                console.log(ind, command);
+                this.executeCommand(ind, command);
             }
         },
 
-        executeCommand: function(command){
+        executeCommand: function(id, command){
+            console.log(command.name);
+            
              switch(command.name){
                     case "setXPos":
                         this.current_status.xPos = command.para[0];
-                        if(this.current_status.shown)
                         this.draw();
                         break;
                     case "setYPos":
                         this.current_status.yPos = command.para[0];
-                        if(this.current_status.shown)
                         this.draw();
                         break;
                     case "show":
-                        this.current_status.shown = true;
+                        this.current_status.isShown = true;
                         this.draw();
                         break;
                     case "hide":
-              //          this.clearCanvas();
-                        this.current_status.shown = false;
+                        this.current_status.isShown = false;
                         break;
                     case "move":
                         //move in current facing direction
+                        var step = 0;
+                        while (step < command.para[0]){
+                            this.current_status.xPos++;
+                            console.log("current pos", this.current_status.xPos);
+                            this.draw();
+                            step++;
+                        }
                         break;
                     case "changeCostume":
-
+                        this.current_status.costume = command.para[0];
+                        this.draw();
                         break;
                     case "changeBackground":
-
+                        this.current_status.backgroundImg = command.para[0];
+                        this.draw();
                         break;
                     case "repeat":
-
+                        console.log(command.para[0], command.para[1]);
+                        this.loop_layer++
+                        this.iteration[this.loop_layer] = command.para[0];
+                        this.commands_iter[this.loop_layer] = command.para[1];
+                        console.log("in", this.iteration[this.loop_layer], "times", this.commands_iter[this.loop_layer], "commands");   
+                        // if (this.iteration[this.loop_layer] == 'forever'){
+                        //     while (1){
+                        //         this.executeFunctions(id+1, this.commands_iter[this.loop_layer]);      // infinite loop case, only wait for stop.
+                        //     }
+                        // }
+                        // else {
+                        //     console.log("in", this.iteration[this.loop_layer], "times", this.commands_iter[this.loop_layer], "commands");
+                        //     for (var j = 0; this.iteration[this.loop_layer]; j++){
+                        //         this.executeFunctions(id+1, this.commands_iter[this.loop_layer]);      // finite loop case
+                        //     }
+                        //     this.loop_layer--;  
+                        // }                                 // after jumped out, reduce layer.                     
                         break;
                     default:
                         console.log("invalid command, error in code somewhere");
                 }
         },
+
+// this.iteration[++loop_layer] = movements[0];        // get number of iteration of this loop
+//                     this.commands_iter[loop_layer] = movements[1];   // get numebr of commands included in this loop
+//                     start = ++this.index;                                    // set start be the next function index  
+//                     if (this.iteration[loop_layer] == 'forever'){
+//                         while (1){
+//                         this.execute(start, this.commands_iter[loop_layer]);      // infinite loop case, only wait for stop.
+//                         }
+//                     }
+//                     else {
+//                         while (j++ < this.iteration[loop_layer]){            
+//                         this.execute(start, this.commands_iter[loop_layer]);      // finite loop case
+//                         }
+//                         this.loop_layer--;                                   // after jumped out, reduce layer. 
+//                     }
+
+
+
 
         clearCanvas: function(){
             this.ctx.clearRect(0, 0, document.getElementById('player_canvas').width, document.getElementById('player_canvas').height);
@@ -129,19 +179,35 @@ Playground.Views = Playground.Views || {};
             var character = document.createElement('img');
             var bg = document.createElement('img');
             var shown = this.current_status.isShown;
-
+            this.clearCanvas();
+            
             if (bg != ''){  
                 bg.onload = function(){
                     that.ctx.drawImage(bg, 0, 0);        // draw background if applicable
                 }
             }; 
             character.onload = function(){
-                that.ctx.drawImage(character,that.current_status.xPos, that.current_status.yPos); //character.width, character.height);     // draw costume if status isShown is true.
+                if(that.current_status.isShown){
+                    console.log("Let's draw!", that.current_status.isShown);
+                    that.ctx.drawImage(character,that.current_status.xPos, that.current_status.yPos); //character.width, character.height);     // draw costume if status isShown is true.
+                }           
             };
             character.src = this.current_status.costume;    
-            bg.src = this.current_status.backgroungImg;
-        },
+            bg.src = this.current_status.backgroundImg;
 
+        },
+        
+        sleep: function(milliseconds) {
+            var start = new Date().getTime();
+            console.log("start", start);
+            for (var i = 0; i < 1e7; i++) {
+                var cur = new Date().getTime(); 
+                if ((cur - start) > milliseconds){
+                    console.log("timeout", cur);
+                    break;
+                }
+            }
+        }
     });
 
 })();
