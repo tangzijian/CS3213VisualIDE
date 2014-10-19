@@ -142,7 +142,7 @@ Playground.Views = Playground.Views || {};
                         break;
                     case "repeat":
                         console.log(command.para[0], command.para[1]);
-                        var i = 0;
+                        var i = 1;
 
                         var that = this;
                             // for(j=id+1; j<(id+command.para[1]+1); j++){
@@ -150,10 +150,9 @@ Playground.Views = Playground.Views || {};
                             // }
 
                         var timer = function(){
-                         if(i <= command.para[0]) {
+                         if(i < command.para[0]) {
                               i++;
                               that.executeFunctions(id+1, command.para[1]);
-                              console.log(command.para[1]);
                          } else {
                               clearInterval(timer);
                          }
