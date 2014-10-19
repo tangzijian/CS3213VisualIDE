@@ -26,11 +26,7 @@ Playground.Views = Playground.Views || {};
         initialize: function () {
             var that = this;
             $("#play_button").click(function(e){
-<<<<<<< HEAD
-
-=======
                 e.preventDefault();
->>>>>>> FETCH_HEAD
                 that.updateCanvas();       
             });
 
@@ -42,9 +38,10 @@ Playground.Views = Playground.Views || {};
                         xPos: this.model.get('xPos'),
                         yPos: this.model.get('yPos'),
                         isShown: this.model.get('isShown'), 
-                        costume: this.model.get('costume'),
+                        costumes: this.model.get('costumes'),
                         backgroundImg : this.model.get('backgroundImg'),
             };
+             console.log(this.model.get('costumes'));
             this.render();
             this.draw();
         },
@@ -200,7 +197,7 @@ Playground.Views = Playground.Views || {};
                     that.ctx.drawImage(character,that.current_status.xPos, that.current_status.yPos); //character.width, character.height);     // draw costume if status isShown is true.
                 }           
             };
-            character.src = this.current_status.costume;    
+            character.src = this.current_status.costumes[0];    
             bg.src = this.current_status.backgroundImg;
 
         },
